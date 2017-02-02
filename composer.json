@@ -1,0 +1,36 @@
+{
+    "name": "cdi/cdigenerator",
+    "description": "Zend Framework 3 Module that provides code generator (Entity,Controllers,Menu,Routes,Forms)",
+    "type": "library",
+    "license": "WTFPL",
+    "version": "0.0.1",
+    "keywords": [
+        "code",
+        "generator",
+        "zf3",
+        "module",
+        "Zend Framework 3",
+        "entity",
+        "routes",
+        "forms"
+    ],
+    "authors": [{
+            "name": "Cristian Incarnato",
+            "email": "cristian.cdi@gmail.com"
+        }],
+    "minimum-stability": "dev",
+    "config": {
+        "process-timeout": 5000
+    },
+    "require": {
+        "php": ">=5.5",
+        "cdi/cdidatagrid": "^3.1.6",
+        "doctrine/doctrine-orm-module": "^1.0",
+        "gedmo/doctrine-extensions": "^2.4.24"
+    },
+    "autoload": {
+        "psr-4": {
+            "CdiGenerator\\": "src/"
+        }
+    }
+}
