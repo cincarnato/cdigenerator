@@ -13,7 +13,7 @@ use Zend\Form\Annotation;
  *
  * @author Cristian Incarnato
  */
-class Form extends \CdiGenerator\Entity\BaseEntity {
+class Form extends \CdiGenerator\Entity\AbstractEntity {
 
     /**
      * @var int
@@ -47,7 +47,7 @@ class Form extends \CdiGenerator\Entity\BaseEntity {
     
         /**
      * @var 
-     * @ORM\OneToMany(targetEntity="CdiGenerator\Entity\Element", mappedBy="controller")
+     * @ORM\OneToMany(targetEntity="CdiGenerator\Entity\FormElement", mappedBy="controller")
      */
     protected $elements;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace CdiEntity\Entity;
+namespace CdiGenerator\Entity;
 
 
 abstract class AbstractEntity {

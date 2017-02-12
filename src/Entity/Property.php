@@ -13,7 +13,7 @@ use Zend\Form\Annotation;
  *
  * @author Cristian Incarnato
  */
-class Property extends \CdiGenerator\Entity\BaseEntity {
+class Property extends \CdiGenerator\Entity\AbstractEntity {
 
     /**
      * @var int
@@ -60,8 +60,7 @@ class Property extends \CdiGenerator\Entity\BaseEntity {
      * @Annotation\Options({
      * "label":"Related Entity:",
      * "empty_option": "",
-     * "target_class":"CdiGenerator\Entity\Entity",
-     * "property": "name"})
+     * "target_class":"CdiGenerator\Entity\Entity"})
      * @ORM\ManyToOne(targetEntity="CdiGenerator\Entity\Entity")
      * @ORM\JoinColumn(name="related_entity_id", referencedColumnName="id", onDelete="CASCADE")
      */

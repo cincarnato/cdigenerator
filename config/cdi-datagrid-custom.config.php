@@ -1,37 +1,10 @@
 <?php
 
-return  [
-     //MODULE
-    "CdiGenerator_Module" => [
-        "sourceConfig" => [
-            "type" => "doctrine",
-            "doctrineOptions" => [
-                "entityName" => "\CdiGenerator\Entity\Module",
-                "entityManager" => "doctrine.entitymanager.orm_cdigenerator"
-            ]
-        ],
-        "columnsConfig" => array(
-            "createdAt" => [
-                "type" => "date",
-                "displayName" => "Creado en Fecha",
-                "format" => "Y-m-d H:i:s"
-            ],
-            "updatedAt" => [
-                "type" => "date",
-                "displayName" => "Ultima Actualizacion",
-                "format" => "Y-m-d H:i:s"
-            ],
-            "entities" => [
-                "hidden" => true
-            ],
-            "path" => [
-                "hidden" => true
-            ],
-             "admin" => [
-                "tdClass" => "text-center"
-            ]
-        )
-    ],
-    
-];
+$setting = array_merge(
+        include 'cdi-datagrid-custom/cdidatagrid.config.php',
+        include 'cdi-datagrid-custom/module.cdigrid.config.php', 
+        include 'cdi-datagrid-custom/entity.cdigrid.config.php', 
+        include 'cdi-datagrid-custom/property.cdigrid.config.php'
+);
 
+return $setting;

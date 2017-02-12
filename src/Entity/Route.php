@@ -13,7 +13,7 @@ use Zend\Form\Annotation;
  *
  * @author Cristian Incarnato
  */
-class Route extends \CdiGenerator\Entity\BaseEntity {
+class Route extends \CdiGenerator\Entity\AbstractEntity {
 
     /**
      * @var int

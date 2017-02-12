@@ -16,6 +16,7 @@ return [
     ),
     'view_manager' => array(
         'template_path_stack' => array(
-            'cdigenerator' => __DIR__ . '/../view',
+            'cdigenerator' => __DIR__ . '/../../view',
         ),
-    ),];
+    ),
+    ];

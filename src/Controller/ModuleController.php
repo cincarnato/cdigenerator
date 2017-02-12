@@ -43,10 +43,17 @@ class ModuleController extends AbstractActionController {
         return $this->em;
     }
 
-    public function abmAction() {      
-        $this->grid->addExtraColumn("admin", "<a class='btn btn-warning btn-xs fa fa-database' href='/generator/module/editor/{{id}}#E' ></a>", "right", false);
+    public function indexAction() {      
+        $this->grid->addExtraColumn("admin", "<a class='btn btn-warning btn-xs fa fa-database' href='/generator/module/manage/{{id}}' ></a>", "right", false);
         $this->grid->prepare();
         return array('grid' =>  $this->grid);
     }
+    
+     public function manageAction() {      
+          $moduleId = $this->params("moduleId");
+         $module = $this->getEm()->getRepository("CdiGenerator\Entity\Module")->find($moduleId);
+         
+         return ["module" => $module];
+     }
 
 }

@@ -13,7 +13,7 @@ use Zend\Form\Annotation;
  *
  * @author Cristian Incarnato
  */
-class FormElementType extends \CdiGenerator\Entity\BaseEntity {
+class FormElementType extends \CdiGenerator\Entity\AbstractEntity {
 
     /**
      * @var int

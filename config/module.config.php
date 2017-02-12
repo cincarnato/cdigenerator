@@ -14,6 +14,7 @@ $setting = array_merge(
         include 'items/rbac.config.php', 
         include 'items/route.config.php', 
         include 'items/view.config.php',
+        include 'items/services.config.php',
         include 'cdi-datagrid-custom.config.php'
 );
 

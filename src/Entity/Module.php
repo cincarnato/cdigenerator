@@ -5,6 +5,7 @@ namespace CdiGenerator\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Zend\Form\Annotation;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  *
@@ -13,7 +14,7 @@ use Zend\Form\Annotation;
  *
  * @author Cristian Incarnato
  */
-class Module extends \CdiGenerator\Entity\BaseEntity {
+class Module extends \CdiGenerator\Entity\AbstractEntity {
 
     /**
      * @var int
@@ -29,7 +30,7 @@ class Module extends \CdiGenerator\Entity\BaseEntity {
      * @Annotation\Type("Zend\Form\Element\Text")
      * @Annotation\Options({"label":"Name:"})
      * @Annotation\Validator({"name":"StringLength", "options":{"min":1, "max":100}})
-     * @ORM\Column(type="string", length=100, unique=false, nullable=true, name="name")
+     * @ORM\Column(type="string", length=100, unique=true, nullable=false, name="name")
      */
     protected $name;
 
@@ -38,7 +39,7 @@ class Module extends \CdiGenerator\Entity\BaseEntity {
      * @Annotation\Type("Zend\Form\Element\Text")
      * @Annotation\Options({"label":"Prefix:"})
      * @Annotation\Validator({"name":"StringLength", "options":{"min":1, "max":15}})
-     * @ORM\Column(type="string", length=15, unique=false, nullable=true, name="prefix")
+     * @ORM\Column(type="string", length=15, unique=true, nullable=true, name="prefix")
      */
     protected $prefix;
 
@@ -52,6 +53,33 @@ class Module extends \CdiGenerator\Entity\BaseEntity {
     protected $path;
 
     /**
+     * @var string
+     * @Annotation\Type("Zend\Form\Element\Textarea")
+     * @Annotation\Options({"label":"Description:"})
+     * @Annotation\Validator({"name":"StringLength", "options":{"min":1, "max":300}})
+     * @ORM\Column(type="string", length=300, unique=false, nullable=true, name="description")
+     */
+    protected $description;
+
+    /**
+     * @var \DateTime createdAt
+     *
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime", name="created_at")
+     * @Annotation\Exclude()
+     */
+    protected $createdAt;
+
+    /**
+     * @var \DateTime updatedAt
+     *
+     * @Gedmo\Timestampable(on="update")
+     * @ORM\Column(type="datetime", name="updated_at", nullable=true)
+     * @Annotation\Exclude()
+     */
+    protected $updatedAt;
+
+    /**
      * @var 
      * @ORM\OneToMany(targetEntity="CdiGenerator\Entity\Entity", mappedBy="module")
      */
@@ -59,7 +87,7 @@ class Module extends \CdiGenerator\Entity\BaseEntity {
 
     /**
      * @var 
-     * @ORM\OneToMany(targetEntity="CdiGenerator\Entity\Controllers", mappedBy="module")
+     * @ORM\OneToMany(targetEntity="CdiGenerator\Entity\Controller", mappedBy="module")
      */
     protected $controllers;
 
@@ -67,6 +95,7 @@ class Module extends \CdiGenerator\Entity\BaseEntity {
         $this->entities = new ArrayCollection();
         $this->controllers = new ArrayCollection();
     }
+
     function getControllers() {
         return $this->controllers;
     }
@@ -75,7 +104,6 @@ class Module extends \CdiGenerator\Entity\BaseEntity {
         $this->controllers = $controllers;
     }
 
-    
     function getId() {
         return $this->id;
     }
@@ -118,6 +146,30 @@ class Module extends \CdiGenerator\Entity\BaseEntity {
 
     function setPrefix($prefix) {
         $this->prefix = $prefix;
+    }
+
+    function getDescription() {
+        return $this->description;
+    }
+
+    function setDescription($description) {
+        $this->description = $description;
+    }
+
+    function getCreatedAt() {
+        return $this->createdAt;
+    }
+
+    function getUpdatedAt() {
+        return $this->updatedAt;
+    }
+
+    function setCreatedAt(\DateTime $createdAt) {
+        $this->createdAt = $createdAt;
+    }
+
+    function setUpdatedAt(\DateTime $updatedAt) {
+        $this->updatedAt = $updatedAt;
     }
 
 }

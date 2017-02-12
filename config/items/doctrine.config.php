@@ -11,7 +11,7 @@ return [
             'orm_cdigenerator' => array(
                 'driverClass' => 'Doctrine\DBAL\Driver\PDOSqlite\Driver',
                 'params' => array(
-                    'path' => __DIR__ . '/../../../../data/cdigenerator/cdigenerator.db',
+                    'path' => __DIR__ . '/../../../../../data/cdigenerator/cdigenerator.db',
                 )
             )
         ),
@@ -43,12 +43,12 @@ return [
         'driver' => array(
             'cdigenerator_entity' => array(
                 'class' => 'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
-                'paths' => array(__DIR__ . '/../src/Entity')
+                'paths' => array(__DIR__ . '/../../src/Entity')
             ),
             'drv_cdigenerator' => array(
                 'class' => "Doctrine\ORM\Mapping\Driver\DriverChain",
                 'drivers' => array(
-                    'CdiEntity\Entity' => 'cdigenerator_entity',
+                    'CdiGenerator\Entity' => 'cdigenerator_entity',
                 ),
             ),
         ),

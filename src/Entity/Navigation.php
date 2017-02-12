@@ -13,7 +13,7 @@ use Zend\Form\Annotation;
  *
  * @author Cristian Incarnato
  */
-class Navigation extends \CdiGenerator\Entity\BaseEntity {
+class Navigation extends \CdiGenerator\Entity\AbstractEntity {
 
     /**
      * @var int
@@ -41,16 +41,16 @@ class Navigation extends \CdiGenerator\Entity\BaseEntity {
      * @Annotation\Options({
      * "label":"Menu Parent:",
      * "empty_option": "",
-     * "target_class":"CdiGenerator\Entity\Menu",
+     * "target_class":"CdiGenerator\Entity\Navigation",
      * "property": "label"})
-     * @ORM\ManyToOne(targetEntity="CdiGenerator\Entity\Menu")
+     * @ORM\ManyToOne(targetEntity="CdiGenerator\Entity\Navigation")
      * @ORM\JoinColumn(name="menu_id", referencedColumnName="id",nullable=true)
      */
     protected $parent;
 
     /**
      * @Annotation\Exclude()
-     * @ORM\OneToMany(targetEntity="CdiGenerator\Entity\Menu", mappedBy="parent")
+     * @ORM\OneToMany(targetEntity="CdiGenerator\Entity\Navigation", mappedBy="parent")
      */
     protected $childs;
 

@@ -12,7 +12,7 @@ use Zend\Form\Annotation;
  *
  * @author Cristian Incarnato
  */
-class Action extends \CdiGenerator\Entity\BaseEntity {
+class Action extends \CdiGenerator\Entity\AbstractEntity {
 
     /**
      * @var int

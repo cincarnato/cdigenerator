@@ -13,7 +13,7 @@ use Zend\Form\Annotation;
  *
  * @author Cristian Incarnato
  */
-class Entity extends \CdiGenerator\Entity\BaseEntity {
+class Entity extends \CdiGenerator\Entity\AbstractEntity {
 
     /**
      * @var int
@@ -135,7 +135,7 @@ class Entity extends \CdiGenerator\Entity\BaseEntity {
     }
 
     public function __toString() {
-        return $this->name;
+        return $this->module."_".$this->name;
     }
 
     function getCustomOnTable() {
