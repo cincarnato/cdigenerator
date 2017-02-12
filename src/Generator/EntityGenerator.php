@@ -31,6 +31,40 @@ class EntityGenerator {
     private $file;
 
     /**
+     * fileGenerate by \Zend\Code\Generator\FileGenerator
+     * 
+     */
+    private $fileGenerate;
+
+    /**
+     * path
+     * 
+     * @var string
+     */
+    private $path;
+
+    /**
+     * path
+     * 
+     * @var string
+     */
+    private $completePath;
+
+    /**
+     * name
+     * 
+     * @var string
+     */
+    private $name;
+
+    /**
+     * fileName
+     * 
+     * @var string
+     */
+    private $fileName;
+
+    /**
      * Status
      * 
      * @var string
@@ -50,6 +84,13 @@ class EntityGenerator {
      * @var boolean
      */
     private $overwrite = false;
+
+    /**
+     * exist
+     * 
+     * @var boolean
+     */
+    private $exists = null;
 
     function __construct(\CdiGenerator\Entity\Entity $entity) {
         $this->entity = $entity;
@@ -80,17 +121,17 @@ class EntityGenerator {
      */
     protected function genNamespace() {
         $namespace = $this->getEntity()->getModule()->getName() . "\Entity";
-        $this->class->setNamespaceName($namespace);
+        $this->classGenerator->setNamespaceName($namespace);
     }
 
     /**
      * [3] Se generan los Use necesarios
      */
     protected function genUse() {
-        $this->class->addUse("Doctrine\Common\Collections\ArrayCollection");
-        $this->class->addUse("Zend\Form\Annotation");
-        $this->class->addUse("Doctrine\ORM\Mapping", "ORM");
-        $this->class->addUse("Doctrine\ORM\Mapping\UniqueConstraint", "UniqueConstraint");
+        $this->classGenerator->addUse("Doctrine\Common\Collections\ArrayCollection");
+        $this->classGenerator->addUse("Zend\Form\Annotation");
+        $this->classGenerator->addUse("Doctrine\ORM\Mapping", "ORM");
+        $this->classGenerator->addUse("Doctrine\ORM\Mapping\UniqueConstraint", "UniqueConstraint");
     }
 
     /**
@@ -103,7 +144,7 @@ class EntityGenerator {
             ["name" => 'ORM\Entity(repositoryClass="' . $this->genRepositoryClass() . '")'],
         ];
         $dockBlock->setTags($a);
-        $this->class->setDocBlock($dockBlock);
+        $this->classGenerator->setDocBlock($dockBlock);
     }
 
     /**
@@ -111,7 +152,7 @@ class EntityGenerator {
      */
     protected function genExtendClass() {
         if ($this->getEntity()->getExtends()) {
-            $this->class->setExtendedClass($this->getEntity()->getExtends());
+            $this->classGenerator->setExtendedClass($this->getEntity()->getExtends());
         }
     }
 
@@ -121,7 +162,8 @@ class EntityGenerator {
     protected function genProperties() {
         foreach ($this->getEntity()->getProperties() as $property) {
             //GENERATE AND ADD Property +(Getter&Setter) to Class 
-            \CdiGenerator\Generator\PropertyGenerator::generate($property, $this->class);
+            $propertyGenerator = new \CdiGenerator\Generator\PropertyGenerator($property, $this->classGenerator);
+            $propertyGenerator->generate();
         }
     }
 
@@ -133,9 +175,11 @@ class EntityGenerator {
         //BODY
         $toString = "return ";
         foreach ($this->getEntity()->getProperties() as $property) {
-            $toString .= ' $this->' . $property->getName() . '." ". ';
+            if ($property->getTostring()) {
+                $toString .= ' $this->' . $property->getName() . '." ". ';
+            }
         }
-        trim($toString, ".");
+        $toString = trim($toString, '." ".');
         $toString .= ';';
 
         //GENERATE
@@ -143,7 +187,7 @@ class EntityGenerator {
         $m->setName(
                 "__toString");
         $m->setBody($toString);
-        return $m;
+        $this->classGenerator->addMethodFromGenerator($m);
     }
 
     /**
@@ -159,17 +203,32 @@ class EntityGenerator {
      */
     protected function insertFile() {
         try {
-            $path = $this->getEntity()->getModule()->getPath() . "/src/Entity/";
-            $name = $this->getEntity()->getName() . ".php";
-            $fileName = $path . $name;
+            $dir = realpath(__DIR__ . "/../../../../../");
 
-            if ($this->getOverwrite() == true || !file_exists($fileName)) {
-                if (!is_dir($path)) {
-                    mkdir($path, 0777, true);
+            $this->path = $this->getEntity()->getModule()->getPath() . "/src/Entity/";
+            $this->completePath = $dir . $this->path;
+            $this->name = $this->getEntity()->getName() . ".php";
+            $this->fileName = $this->completePath . $this->name;
+
+
+            $this->exists = file_exists($this->fileName);
+
+            if ($this->getOverwrite() == true || !$this->exists) {
+                if (!is_dir($this->completePath)) {
+                    mkdir($this->completePath, 0777, true);
                 }
 
-                file_put_contents($fileName, $this->getFile()->generate());
-                $this->msj = "File generated";
+                $this->fileGenerate = $this->getFile()->generate();
+
+                file_put_contents($this->fileName, $this->fileGenerate);
+
+                if ($this->exists) {
+                    $this->msj = "File overwritten";
+                } else {
+                    $this->msj = "Generated file";
+                }
+
+
                 $this->status = true;
             } else {
                 $this->msj = "File exists";
@@ -184,7 +243,7 @@ class EntityGenerator {
      * Generate RepositoryClass Name
      */
     protected function genRepositoryClass() {
-        return $this->getEntity()->getModule()->getName() . '\\Repository\\' . $entity->getName() . 'Repository';
+        return $this->getEntity()->getModule()->getName() . '\\Repository\\' . $this->getEntity()->getName() . 'Repository';
     }
 
     /**
@@ -245,6 +304,30 @@ class EntityGenerator {
 
     function setOverwrite($overwrite) {
         $this->overwrite = $overwrite;
+    }
+
+    function getPath() {
+        return $this->path;
+    }
+
+    function getCompletePath() {
+        return $this->completePath;
+    }
+
+    function getName() {
+        return $this->name;
+    }
+
+    function getFileName() {
+        return $this->fileName;
+    }
+
+    function getFileGenerate() {
+        return $this->fileGenerate;
+    }
+
+    function getExists() {
+        return $this->exists;
     }
 
 }

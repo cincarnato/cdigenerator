@@ -13,7 +13,7 @@ return [
                 'detail' => "",
                 'icon' => 'fa fa-sitemap ',
                 'permission' => 'cdigenerator',
-                'uri' => '/generator/',
+                'uri' => '/generator',
             ],
         ],
     ],

@@ -62,6 +62,15 @@
     </div>
 </div>
 
+
+<style>
+    @media (min-width: 1200px){
+        .modal-lg {
+            width: 1100px;
+        }
+    }
+</style>
+
 <script>
     function getEntities() {
         $.get("/generator/module/entity/<?php echo $module->getId(); ?>").done(function (data) {
@@ -77,9 +86,16 @@
             $("#modalContent").html(data);
             $('#modalProperties').modal('toggle');
         });
+    }
 
+    function modalGenerator(entityId, entityName) {
+        var modalLabel = "Generando entidad: " + entityName;
+        $('#modalLabel').html(modalLabel);
 
-
+        $.get("/generator/module/entity/generator/" + entityId).done(function (data) {
+            $("#modalContent").html(data);
+            $('#modalProperties').modal('toggle');
+        });
     }
 
     getEntities();

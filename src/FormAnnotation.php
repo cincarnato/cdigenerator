@@ -41,7 +41,7 @@ class FormAnnotation {
     static function TEXT($property) {
         return [
             ["name" => 'Annotation\Attributes({"type":"text"})'],
-            ["name" => 'Annotation\Options({"label":"' . $this::LABEL($property) . '", "description":"' . $property->getDescription() . '"})']
+            ["name" => 'Annotation\Options({"label":"' . self::LABEL($property) . '", "description":"' . $property->getDescription() . '"})']
         ];
     }
 
@@ -55,7 +55,7 @@ class FormAnnotation {
         return [
             ["name" => 'Annotation\Type("Zend\Form\Element\File")'],
             ["name" => 'Annotation\Attributes({"type":"file"})'],
-            ["name" => 'Annotation\Options({"label":"' . $this::LABEL($property) . '","absolutepath":"' . $property->getAbsolutepath() . '","webpath":"' . $property->getWebpath() . '", "description":"' . $property->getDescription() . '"})'],
+            ["name" => 'Annotation\Options({"label":"' . self::LABEL($property) . '","absolutepath":"' . $property->getAbsolutepath() . '","webpath":"' . $property->getWebpath() . '", "description":"' . $property->getDescription() . '"})'],
             ["name" => 'Annotation\Filter({"name":"filerenameupload", "options":{"target":"' . $property->getAbsolutepath() . '","use_upload_name":1,"overwrite":1}})'],
         ];
     }
@@ -70,7 +70,7 @@ class FormAnnotation {
         return [
             ["name" => 'Annotation\Type("Zend\Form\Element\Checkbox")'],
             ["name" => 'Annotation\Attributes({"type":"checkbox"})'],
-            ["name" => 'Annotation\Options({"label":"' . $this::LABEL($property) . '", "description":"' . $property->getDescription() . '"})']
+            ["name" => 'Annotation\Options({"label":"' . self::LABEL($property) . '", "description":"' . $property->getDescription() . '"})']
         ];
     }
     
@@ -84,7 +84,7 @@ class FormAnnotation {
     static function OBJECTSELECT($property) {
         return [
            ["name" => 'Annotation\Type("DoctrineModule\Form\Element\ObjectSelect")'],
-           ["name" => 'Annotation\Options({"label":"' . $this::LABEL($property) . '","empty_option": "","target_class":"' . $property->getRelatedEntity()->getFullName() . '", "description":"' . $property->getDescription() . '"})'],
+           ["name" => 'Annotation\Options({"label":"' . self::LABEL($property) . '","empty_option": "","target_class":"' . $property->getRelatedEntity()->getFullName() . '", "description":"' . $property->getDescription() . '"})'],
         ];
     }
     
@@ -97,7 +97,7 @@ class FormAnnotation {
     static function OBJECTMULTICHECKBOX($property) {
         return [
            ["name" => 'Annotation\Type("DoctrineModule\Form\Element\ObjectMultiCheckbox")'],
-           ["name" => 'Annotation\Options({"label":"' . $this::LABEL($property) . '","target_class":"' . $property->getRelatedEntity()->getFullName() . '", "description":"' . $property->getDescription() . '"})'],
+           ["name" => 'Annotation\Options({"label":"' . self::LABEL($property) . '","target_class":"' . $property->getRelatedEntity()->getFullName() . '", "description":"' . $property->getDescription() . '"})'],
         ];
     }
 
@@ -110,7 +110,7 @@ class FormAnnotation {
     static function TEXTAREA($property) {
         return [
             ["name" => 'Annotation\Attributes({"type":"textarea"})'],
-            ["name" => 'Annotation\Options({"label":"' . $this::LABEL($property) . '", "description":"' . $property->getDescription() . '"})']
+            ["name" => 'Annotation\Options({"label":"' . self::LABEL($property) . '", "description":"' . $property->getDescription() . '"})']
         ];
     }
 

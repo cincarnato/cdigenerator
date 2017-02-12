@@ -60,7 +60,9 @@ class EntityController extends AbstractActionController {
 
         ##################################################
 
-        $this->grid->addExtraColumn("Properties", "<a class='btn btn-warning btn-xs fa fa-database' onclick='modalProperties({{id}},\"{{name}}\")' ></a>", "right", false);
+        $this->grid->addExtraColumn("PROPERTIES", "<a class='btn btn-warning btn-xs fa fa-database ' onclick='modalProperties({{id}},\"{{name}}\")' ></a>", "right", false);
+        $this->grid->addExtraColumn("GENERATOR", "<a class='btn btn-warning btn-xs fa fa-file-code-o' onclick='modalGenerator({{id}},\"{{name}}\")' ></a>", "right", false);
+
         $this->grid->setRecordsPerPage(100);
         $this->grid->setTableClass("table-condensed");
         $this->grid->prepare();
@@ -85,6 +87,20 @@ class EntityController extends AbstractActionController {
         $entity = $this->getEm()->getRepository("CdiGenerator\Entity\Entity")->find($entityId);
 
         return ["entity" => $entity];
+    }
+
+    public function generatorAction() {
+        $entityId = $this->params("entityId");
+        $entity = $this->getEm()->getRepository("CdiGenerator\Entity\Entity")->find($entityId);
+
+        $entityGenerator = new \CdiGenerator\Generator\EntityGenerator($entity);
+        $entityGenerator->setOverwrite(true);
+        $entityGenerator->generate();
+
+
+        $view = new ViewModel(["entityGenerator" => $entityGenerator, "entity" => $entity]);
+        $view->setTerminal(true);
+        return $view;
     }
 
 }

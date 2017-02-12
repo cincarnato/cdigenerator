@@ -38,7 +38,7 @@ return [
             ],
             "entity" => [
                 "hidden" => true
-            ], 
+            ],
             "beNullable" => [
                 "displayName" => "Null",
             ],
@@ -49,6 +49,14 @@ return [
                 "hidden" => true
             ],
             "mandatory" => [
+                "hidden" => true
+            ],
+            "tostring" => [
+                "hidden" => true
+            ],
+            "primarykey" => [
+                "hidden" => true
+            ], "autoincrement" => [
                 "hidden" => true
             ],
         ],

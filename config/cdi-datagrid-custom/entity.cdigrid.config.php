@@ -27,7 +27,10 @@ return [
             "path" => [
                 "hidden" => true
             ],
-            "Properties" => [
+            "PROPERTIES" => [
+                "tdClass" => "text-center"
+            ],
+             "GENERATOR" => [
                 "tdClass" => "text-center"
             ]
         ],
