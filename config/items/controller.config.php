@@ -12,6 +12,10 @@ return array(
             \CdiGenerator\Controller\ModuleController::class => \CdiGenerator\Factory\Controller\ModuleControllerFactory::class,
             \CdiGenerator\Controller\EntityController::class => \CdiGenerator\Factory\Controller\EntityControllerFactory::class,
             \CdiGenerator\Controller\PropertyController::class => \CdiGenerator\Factory\Controller\PropertyControllerFactory::class,
-        ],
+         \CdiGenerator\Controller\AbmController::class => \CdiGenerator\Factory\Controller\AbmControllerFactory::class,
+             \CdiGenerator\Controller\GeneratorController::class => \CdiGenerator\Factory\Controller\GeneratorControllerFactory::class,
+     \CdiGenerator\Controller\RouteController::class => \CdiGenerator\Factory\Controller\RouteControllerFactory::class,
+   
+            ],
     ]
 );

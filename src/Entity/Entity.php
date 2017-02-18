@@ -95,7 +95,7 @@ class Entity extends \CdiGenerator\Entity\AbstractEntity {
     }
 
     function getFullName() {
-        return $this->namespace->getName() . "\Entity\\" . $this->name;
+        return $this->getModule()->getName() . "\Entity\\" . $this->name;
     }
 
     function getName() {

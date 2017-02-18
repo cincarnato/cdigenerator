@@ -1,0 +1,30 @@
+
+<table class="table table-bordered">
+    <tr>  
+        <th>STATUS</th> <td><?php echo ($entityGenerator->getStatus()) ? "<label class='alert alert-success'>OK</label>" : "<label class='alert alert-danger'>Fail</label>"; ?></td>
+    </tr>
+    <tr>  
+        <th>FILE EXISTS</th> <td><?php echo ($entityGenerator->getExists())?"YES":"NO"; ?></td>
+    </tr> 
+    <tr>  
+        <th>MSJ</th> <td><?php echo $entityGenerator->getMsj(); ?></td>
+    </tr>
+    <tr>
+        <th>RELATIVE PATH</th> <td><?php echo $entityGenerator->getPath(); ?></td>
+    </tr>
+    <tr>  
+        <th>COMPLETE PATH</th> <td><?php echo $entityGenerator->getCompletePath(); ?></td>
+    </tr>
+    <tr>  
+        <th>FILE NAME</th> <td><?php echo $entityGenerator->getName(); ?></td>
+    </tr>
+
+    <tr>  
+        <th>PATH & FILE NAME</th> <td><?php echo $entityGenerator->getFileName(); ?></td>
+    </tr>
+
+
+
+
+
+</table>

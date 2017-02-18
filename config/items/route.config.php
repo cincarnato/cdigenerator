@@ -33,6 +33,16 @@ return [
                             ),
                         ),
                         'child_routes' => [
+                            'ABM' => array(
+                                'type' => Segment::class,
+                                'options' => array(
+                                    'route' => '/abm/:id',
+                                    'defaults' => array(
+                                        'controller' => Controller\AbmController::class,
+                                        'action' => 'index',
+                                    ),
+                                ),
+                            ),
                             'Manage' => array(
                                 'type' => Segment::class,
                                 'options' => array(
@@ -68,8 +78,18 @@ return [
                                 'options' => array(
                                     'route' => '/entity/generator/:entityId',
                                     'defaults' => array(
-                                        'controller' => Controller\EntityController::class,
-                                        'action' => 'generator',
+                                        'controller' => Controller\GeneratorController::class,
+                                        'action' => 'entity',
+                                    ),
+                                ),
+                            ),
+                             'Route' => array(
+                                'type' => Segment::class,
+                                'options' => array(
+                                    'route' => '/route/:moduleId',
+                                    'defaults' => array(
+                                        'controller' => Controller\RouteController::class,
+                                        'action' => 'module',
                                     ),
                                 ),
                             ),

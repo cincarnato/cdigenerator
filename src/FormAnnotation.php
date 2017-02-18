@@ -46,6 +46,48 @@ class FormAnnotation {
     }
 
     /**
+     * Return Annotation for DATE Input
+     * 
+     * @param \CdiGenerator\Entity\Property $property
+     * @return Array
+     */
+    static function DATE($property) {
+        return [
+            ["name" => 'Annotation\Type("Zend\Form\Element\Date")'],
+            ["name" => 'Annotation\Attributes({"type":"date"})'],
+            ["name" => 'Annotation\Options({"label":"' . self::LABEL($property) . '", "description":"' . $property->getDescription() . '"})']
+        ];
+    }
+
+    /**
+     * Return Annotation for DATETIME Input
+     * 
+     * @param \CdiGenerator\Entity\Property $property
+     * @return Array
+     */
+    static function DATETIME($property) {
+        return [
+            ["name" => 'Annotation\Type("Zend\Form\Element\DateTime")'],
+            ["name" => 'Annotation\Attributes({"type":"datetime"})'],
+            ["name" => 'Annotation\Options({"label":"' . self::LABEL($property) . '", "description":"' . $property->getDescription() . '"})']
+        ];
+    }
+
+    /**
+     * Return Annotation for TIME Input
+     * 
+     * @param \CdiGenerator\Entity\Property $property
+     * @return Array
+     */
+    static function TIME($property) {
+        return [
+            ["name" => 'Annotation\Type("Zend\Form\Element\Time")'],
+            ["name" => 'Annotation\Attributes({"type":"time"})'],
+            ["name" => 'Annotation\Options({"label":"' . self::LABEL($property) . '", "description":"' . $property->getDescription() . '"})']
+        ];
+    }
+
+    /**
      * Return Annotation for FILE Input
      * 
      * @param \CdiGenerator\Entity\Property $property
@@ -73,9 +115,8 @@ class FormAnnotation {
             ["name" => 'Annotation\Options({"label":"' . self::LABEL($property) . '", "description":"' . $property->getDescription() . '"})']
         ];
     }
-    
-    
-     /**
+
+    /**
      * Return Annotation for OBJECTSELECT Input
      * 
      * @param \CdiGenerator\Entity\Property $property
@@ -83,12 +124,12 @@ class FormAnnotation {
      */
     static function OBJECTSELECT($property) {
         return [
-           ["name" => 'Annotation\Type("DoctrineModule\Form\Element\ObjectSelect")'],
-           ["name" => 'Annotation\Options({"label":"' . self::LABEL($property) . '","empty_option": "","target_class":"' . $property->getRelatedEntity()->getFullName() . '", "description":"' . $property->getDescription() . '"})'],
+            ["name" => 'Annotation\Type("DoctrineModule\Form\Element\ObjectSelect")'],
+            ["name" => 'Annotation\Options({"label":"' . self::LABEL($property) . '","empty_option": "", "target_class":"' . $property->getRelatedEntity()->getFullName() . '", "description":"' . $property->getDescription() . '"})'],
         ];
     }
-    
-       /**
+
+    /**
      * Return Annotation for OBJECTSELECT Input
      * 
      * @param \CdiGenerator\Entity\Property $property
@@ -96,8 +137,8 @@ class FormAnnotation {
      */
     static function OBJECTMULTICHECKBOX($property) {
         return [
-           ["name" => 'Annotation\Type("DoctrineModule\Form\Element\ObjectMultiCheckbox")'],
-           ["name" => 'Annotation\Options({"label":"' . self::LABEL($property) . '","target_class":"' . $property->getRelatedEntity()->getFullName() . '", "description":"' . $property->getDescription() . '"})'],
+            ["name" => 'Annotation\Type("DoctrineModule\Form\Element\ObjectMultiCheckbox")'],
+            ["name" => 'Annotation\Options({"label":"' . self::LABEL($property) . '","target_class":"' . $property->getRelatedEntity()->getFullName() . '", "description":"' . $property->getDescription() . '"})'],
         ];
     }
 

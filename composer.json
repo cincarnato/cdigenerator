@@ -26,7 +26,8 @@
         "php": ">=5.5",
         "cdi/cdidatagrid": "^3.1.6",
         "doctrine/doctrine-orm-module": "^1.0",
-        "gedmo/doctrine-extensions": "^2.4.24"
+        "gedmo/doctrine-extensions": "^2.4.24",
+        "swissengine/doctrine-module-extension": "dev-master"
     },
     "autoload": {
         "psr-4": {

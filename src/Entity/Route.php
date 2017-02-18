@@ -42,7 +42,7 @@ class Route extends \CdiGenerator\Entity\AbstractEntity {
      * "label":"Route Parent:",
      * "empty_option": "",
      * "target_class":"CdiGenerator\Entity\Route",
-     * "property": "label"})
+     * "property": "name"})
      * @ORM\ManyToOne(targetEntity="CdiGenerator\Entity\Route")
      * @ORM\JoinColumn(name="route_id", referencedColumnName="id",nullable=true)
      */
@@ -70,7 +70,7 @@ class Route extends \CdiGenerator\Entity\AbstractEntity {
      * "label":"Route Type:",
      * "empty_option": "",
      * "target_class":"CdiGenerator\Entity\RouteType",
-     * "property": "label"})
+     * "property": "name"})
      * @ORM\ManyToOne(targetEntity="CdiGenerator\Entity\RouteType")
      * @ORM\JoinColumn(name="type_id", referencedColumnName="id",nullable=true)
      */
@@ -112,7 +112,7 @@ class Route extends \CdiGenerator\Entity\AbstractEntity {
      */
     protected $route;
 
-
+    
     public function __construct() {
         $this->childs = new ArrayCollection();
     }

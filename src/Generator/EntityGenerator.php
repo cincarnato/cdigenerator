@@ -7,7 +7,7 @@ namespace CdiGenerator\Generator;
  *
  * @author Cristian Incarnato <cristian.cdi@gmail.com>
  */
-class EntityGenerator {
+class EntityGenerator extends AbstractGenerator{
 
     /**
      * Description
@@ -15,82 +15,6 @@ class EntityGenerator {
      * @var \CdiGenerator\Entity\Entity
      */
     private $entity;
-
-    /**
-     * Description
-     * 
-     * @var \Zend\Code\Generator\ClassGenerator
-     */
-    private $classGenerator;
-
-    /**
-     * Description
-     * 
-     * @var \Zend\Code\Generator\FileGenerator
-     */
-    private $file;
-
-    /**
-     * fileGenerate by \Zend\Code\Generator\FileGenerator
-     * 
-     */
-    private $fileGenerate;
-
-    /**
-     * path
-     * 
-     * @var string
-     */
-    private $path;
-
-    /**
-     * path
-     * 
-     * @var string
-     */
-    private $completePath;
-
-    /**
-     * name
-     * 
-     * @var string
-     */
-    private $name;
-
-    /**
-     * fileName
-     * 
-     * @var string
-     */
-    private $fileName;
-
-    /**
-     * Status
-     * 
-     * @var string
-     */
-    private $status;
-
-    /**
-     * msj
-     * 
-     * @var string
-     */
-    private $msj;
-
-    /**
-     * overwrite
-     * 
-     * @var boolean
-     */
-    private $overwrite = false;
-
-    /**
-     * exist
-     * 
-     * @var boolean
-     */
-    private $exists = null;
 
     function __construct(\CdiGenerator\Entity\Entity $entity) {
         $this->entity = $entity;
@@ -274,60 +198,6 @@ class EntityGenerator {
         $this->entity = $entity;
     }
 
-    function getFile() {
-        return $this->file;
-    }
 
-    function setFile(\Zend\Code\Generator\FileGenerator $file) {
-        $this->file = $file;
-    }
-
-    function getClassGenerator() {
-        return $this->classGenerator;
-    }
-
-    function setClassGenerator(\Zend\Code\Generator\ClassGenerator $classGenerator) {
-        $this->classGenerator = $classGenerator;
-    }
-
-    function getStatus() {
-        return $this->status;
-    }
-
-    function getMsj() {
-        return $this->msj;
-    }
-
-    function getOverwrite() {
-        return $this->overwrite;
-    }
-
-    function setOverwrite($overwrite) {
-        $this->overwrite = $overwrite;
-    }
-
-    function getPath() {
-        return $this->path;
-    }
-
-    function getCompletePath() {
-        return $this->completePath;
-    }
-
-    function getName() {
-        return $this->name;
-    }
-
-    function getFileName() {
-        return $this->fileName;
-    }
-
-    function getFileGenerate() {
-        return $this->fileGenerate;
-    }
-
-    function getExists() {
-        return $this->exists;
-    }
 
 }

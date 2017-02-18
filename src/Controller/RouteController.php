@@ -5,7 +5,7 @@ namespace CdiGenerator\Controller;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
-class EntityController extends AbstractActionController {
+class RouteController extends AbstractActionController {
 
     /**
      * @var Doctrine\ORM\EntityManager
@@ -52,18 +52,13 @@ class EntityController extends AbstractActionController {
 
         $query = $this->getEm()->createQueryBuilder()
                 ->select('u')
-                ->from('CdiGenerator\Entity\Entity', 'u')
+                ->from('CdiGenerator\Entity\Route', 'u')
                 ->where("u.module = :moduleId")
                 ->setParameter("moduleId", $moduleId);
-        $source = new \CdiDataGrid\Source\DoctrineSource($this->getEm(), "CdiGenerator\Entity\Entity", $query);
+        $source = new \CdiDataGrid\Source\DoctrineSource($this->getEm(), "CdiGenerator\Entity\Route", $query);
         $this->grid->setSource($source);
 
         ##################################################
-
-        $this->grid->addExtraColumn("PROPERTIES", "<a class='btn btn-warning btn-xs fa fa-database ' onclick='modalProperties({{id}},\"{{name}}\")' ></a>", "right", false);
-        $this->grid->addExtraColumn("GENERATOR", "<a class='btn btn-warning btn-xs fa fa-file-code-o' onclick='modalGenerator({{id}},\"{{name}}\")' ></a>", "right", false);
-        $this->grid->addExtraColumn("ABM", "<a class='btn btn-warning btn-xs fa fa-file-code-o' onclick='modalAbm({{id}},\"{{name}}\")' ></a>", "right", false);
-
         
         $this->grid->setRecordsPerPage(100);
         $this->grid->setTableClass("table-condensed");
@@ -84,12 +79,6 @@ class EntityController extends AbstractActionController {
         return $view;
     }
 
-    public function propertiesAction() {
-        $entityId = $this->params("entityId");
-        $entity = $this->getEm()->getRepository("CdiGenerator\Entity\Entity")->find($entityId);
-
-        return ["entity" => $entity];
-    }
 
   
 

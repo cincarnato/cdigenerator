@@ -77,6 +77,12 @@
             $("#entityTab").html(data);
         });
     }
+    
+     function getRoutes() {
+        $.get("/generator/module/route/<?php echo $module->getId(); ?>").done(function (data) {
+            $("#routeTab").html(data);
+        });
+    }
 
     function modalProperties(entityId, entityName) {
         var modalLabel = "Editando propiedades de entidad: " + entityName;
@@ -97,6 +103,17 @@
             $('#modalProperties').modal('toggle');
         });
     }
+    
+     function modalAbm(entityId, entityName) {
+        var modalLabel = "ABM entidad: " + entityName;
+        $('#modalLabel').html(modalLabel);
+
+        $.get("/generator/module/abm/" + entityId).done(function (data) {
+            $("#modalContent").html(data);
+            $('#modalProperties').modal('toggle');
+        });
+    }
 
     getEntities();
+     getRoutes();
 </script>    
