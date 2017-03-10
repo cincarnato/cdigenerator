@@ -61,7 +61,7 @@ class EntityController extends AbstractActionController {
         ##################################################
 
         $this->grid->addExtraColumn("PROPERTIES", "<a class='btn btn-warning btn-xs fa fa-database ' onclick='modalProperties({{id}},\"{{name}}\")' ></a>", "right", false);
-        $this->grid->addExtraColumn("GENERATOR", "<a class='btn btn-warning btn-xs fa fa-file-code-o' onclick='modalGenerator({{id}},\"{{name}}\")' ></a>", "right", false);
+        $this->grid->addExtraColumn("GENERATOR", "<a class='btn btn-warning btn-xs fa fa-file-code-o' onclick='modalEntityGenerator({{id}},\"{{name}}\")' ></a>", "right", false);
         $this->grid->addExtraColumn("ABM", "<a class='btn btn-warning btn-xs fa fa-file-code-o' onclick='modalAbm({{id}},\"{{name}}\")' ></a>", "right", false);
 
         

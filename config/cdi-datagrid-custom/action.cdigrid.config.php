@@ -2,32 +2,30 @@
 
 return [
     //Entity
-    "CdiGenerator_Route" => [
+    "CdiGenerator_Action" => [
         "sourceConfig" => [
             "type" => "doctrine",
             "doctrineOptions" => [
-                "entityName" => "\CdiGenerator\Entity\Route",
+                "entityName" => "\CdiGenerator\Entity\Action",
                 "entityManager" => "doctrine.entitymanager.orm_cdigenerator"
             ]
         ],
         "columnsConfig" => [
-            "childs" => [
-                "hidden" => true
+            "createdAt" => [
+                "type" => "date",
+                "displayName" => "Creado",
+                "format" => "Y-m-d H:i:s"
             ],
-            "parent" => [
-                "type" => "relational"
+            "updatedAt" => [
+                "type" => "date",
+                "displayName" => "Actualizado",
+                "format" => "Y-m-d H:i:s"
             ],
-            "module" => [
-                "type" => "relational",
+            "description" => [
                 "hidden" => true
             ],
             "controller" => [
-                "type" => "relational"
-            ],
-            "action" => [
-                "type" => "relational"
-            ],
-            "type" => [
+                "hidden" => true,
                 "type" => "relational"
             ],
         ],

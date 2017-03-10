@@ -5,7 +5,7 @@ namespace CdiGenerator\Controller;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
-class RouteController extends AbstractActionController {
+class ControllerController extends AbstractActionController {
 
     /**
      * @var Doctrine\ORM\EntityManager
@@ -52,13 +52,16 @@ class RouteController extends AbstractActionController {
 
         $query = $this->getEm()->createQueryBuilder()
                 ->select('u')
-                ->from('CdiGenerator\Entity\Route', 'u')
+                ->from('CdiGenerator\Entity\Controller', 'u')
                 ->where("u.module = :moduleId")
                 ->setParameter("moduleId", $moduleId);
-        $source = new \CdiDataGrid\Source\DoctrineSource($this->getEm(), "CdiGenerator\Entity\Route", $query);
+        $source = new \CdiDataGrid\Source\DoctrineSource($this->getEm(), "CdiGenerator\Entity\Controller", $query);
         $this->grid->setSource($source);
 
         ##################################################
+        $this->grid->addExtraColumn("ACTIONS", "<a class='btn btn-warning btn-xs fa fa-database ' onclick='modalActions({{id}},\"{{name}}\")' ></a>", "right", false);
+        $this->grid->addExtraColumn("GENERATOR", "<a class='btn btn-warning btn-xs fa fa-file-code-o' onclick='modalControllerGenerator({{id}},\"{{name}}\")' ></a>", "right", false);
+        
         
         $this->grid->setRecordsPerPage(100);
         $this->grid->setTableClass("table-condensed");

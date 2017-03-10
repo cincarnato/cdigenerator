@@ -41,9 +41,33 @@ class Controller extends \CdiGenerator\Entity\AbstractEntity {
      * @Annotation\Type("Zend\Form\Element\Text")
      * @Annotation\Options({"label":"Name:"})
      * @Annotation\Validator({"name":"StringLength", "options":{"min":1, "max":100}})
-     * @ORM\Column(type="string", length=100, unique=true, nullable=true, name="name")
+     * @ORM\Column(type="string", length=100, unique=true, nullable=false, name="name")
      */
     protected $name;
+    
+        
+      /**
+     * @Annotation\Type("DoctrineModule\Form\Element\ObjectSelect")
+     * @Annotation\Options({
+     * "label":"Entity:",
+     * "empty_option": "",
+     * "target_class":"CdiGenerator\Entity\Entity",
+     * "property": "name"})
+     * @ORM\ManyToOne(targetEntity="CdiGenerator\Entity\Entity")
+     * @ORM\JoinColumn(name="entity_id", referencedColumnName="id", onDelete="CASCADE")
+     */
+    protected $entity;
+    
+        /**
+     * @var string
+     * @Annotation\Type("Zend\Form\Element\Textarea")
+     * @Annotation\Options({"label":"Description:"})
+     * @Annotation\Validator({"name":"StringLength", "options":{"min":1, "max":300}})
+     * @ORM\Column(type="string", length=300, unique=false, nullable=true, name="description")
+     */
+    protected $description;
+
+    
     
         /**
      * @var 
@@ -55,6 +79,15 @@ class Controller extends \CdiGenerator\Entity\AbstractEntity {
         $this->actions = new ArrayCollection();
     }
     
+    function getEntity() {
+        return $this->entity;
+    }
+
+    function setEntity($entity) {
+        $this->entity = $entity;
+    }
+
+        
     function getActions() {
         return $this->actions;
     }
@@ -87,6 +120,16 @@ class Controller extends \CdiGenerator\Entity\AbstractEntity {
     function setName($name) {
         $this->name = $name;
     }
+    
+    function getDescription() {
+        return $this->description;
+    }
+
+    function setDescription($description) {
+        $this->description = $description;
+    }
+
+
 
 
     

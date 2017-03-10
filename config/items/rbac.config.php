@@ -9,7 +9,7 @@ return [
     'zfc_rbac' => [
         'guards' => [
             'ZfcRbac\Guard\RouteGuard' => [
-                'cdigenerator_*' => ['guest'],
+                'CdiGenerator_*' => ['guest'],
             ],
         ]
     ]

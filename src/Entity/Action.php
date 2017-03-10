@@ -57,18 +57,6 @@ class Action extends \CdiGenerator\Entity\AbstractEntity {
      */
     protected $template;
     
-    
-      /**
-     * @Annotation\Type("DoctrineModule\Form\Element\ObjectSelect")
-     * @Annotation\Options({
-     * "label":"Entity:",
-     * "empty_option": "",
-     * "target_class":"CdiGenerator\Entity\Entity",
-     * "property": "name"})
-     * @ORM\ManyToOne(targetEntity="CdiGenerator\Entity\Entity")
-     * @ORM\JoinColumn(name="entity_id", referencedColumnName="id", onDelete="CASCADE")
-     */
-    protected $entity;
 
 
     function getId() {
@@ -101,15 +89,6 @@ class Action extends \CdiGenerator\Entity\AbstractEntity {
 
     function setTemplate($template) {
         $this->template = $template;
-    }
-
-
-    function getEntity() {
-        return $this->entity;
-    }
-
-    function setEntity($entity) {
-        $this->entity = $entity;
     }
 
 

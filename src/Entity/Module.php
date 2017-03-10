@@ -60,6 +60,35 @@ class Module extends \CdiGenerator\Entity\AbstractEntity {
      * @ORM\Column(type="string", length=300, unique=false, nullable=true, name="description")
      */
     protected $description;
+    
+    
+     /**
+     * @var string
+     * @Annotation\Type("Zend\Form\Element\Text")
+     * @Annotation\Options({"label":"Author:"})
+     * @Annotation\Validator({"name":"StringLength", "options":{"min":1, "max":100}})
+     * @ORM\Column(type="string", length=100, unique=false, nullable=true, name="author")
+     */
+    protected $author;
+    
+     /**
+     * @var string
+     * @Annotation\Type("Zend\Form\Element\Text")
+     * @Annotation\Options({"label":"License:"})
+     * @Annotation\Validator({"name":"StringLength", "options":{"min":1, "max":100}})
+     * @ORM\Column(type="string", length=100, unique=false, nullable=true, name="license")
+     */
+    protected $license;
+
+      /**
+     * @var string
+     * @Annotation\Type("Zend\Form\Element\Text")
+     * @Annotation\Options({"label":"Link:"})
+     * @Annotation\Validator({"name":"StringLength", "options":{"min":1, "max":150}})
+     * @ORM\Column(type="string", length=150, unique=false, nullable=true, name="link")
+     */
+    protected $link;
+    
 
     /**
      * @var \DateTime createdAt
@@ -171,5 +200,33 @@ class Module extends \CdiGenerator\Entity\AbstractEntity {
     function setUpdatedAt(\DateTime $updatedAt) {
         $this->updatedAt = $updatedAt;
     }
+    
+    function getAuthor() {
+        return $this->author;
+    }
+
+    function getLicense() {
+        return $this->license;
+    }
+
+    function setAuthor($author) {
+        $this->author = $author;
+    }
+
+    function setLicense($license) {
+        $this->license = $license;
+    }
+    
+    function getLink() {
+        return $this->link;
+    }
+
+    function setLink($link) {
+        $this->link = $link;
+    }
+
+
+
+
 
 }

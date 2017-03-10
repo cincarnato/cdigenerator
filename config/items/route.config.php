@@ -93,6 +93,36 @@ return [
                                     ),
                                 ),
                             ),
+                             'Controller' => array(
+                                'type' => Segment::class,
+                                'options' => array(
+                                    'route' => '/controller/:moduleId',
+                                    'defaults' => array(
+                                        'controller' => Controller\ControllerController::class,
+                                        'action' => 'module',
+                                    ),
+                                ),
+                            ),
+                            'Controller_Action' => array(
+                                'type' => Segment::class,
+                                'options' => array(
+                                    'route' => '/controller/action/:controllerId',
+                                    'defaults' => array(
+                                        'controller' => Controller\ActionController::class,
+                                        'action' => 'controller',
+                                    ),
+                                ),
+                            ),
+                            'Controller_Generator' => array(
+                                'type' => Segment::class,
+                                'options' => array(
+                                    'route' => '/controller/generator/:controllerId',
+                                    'defaults' => array(
+                                        'controller' => Controller\GeneratorController::class,
+                                        'action' => 'controller',
+                                    ),
+                                ),
+                            ),
                         ]
                     ),
                 ],

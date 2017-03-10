@@ -5,7 +5,7 @@ namespace CdiGenerator\Controller;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
-class RouteController extends AbstractActionController {
+class ActionController extends AbstractActionController {
 
     /**
      * @var Doctrine\ORM\EntityManager
@@ -43,33 +43,32 @@ class RouteController extends AbstractActionController {
         return $this->em;
     }
 
-    public function moduleAction() {
+    public function controllerAction() {
 
         //Limitamos las Entity al module correspondiente
 
-        $moduleId = $this->params("moduleId");
-        $module = $this->getEm()->getRepository("CdiGenerator\Entity\Module")->find($moduleId);
+        $controllerId = $this->params("controllerId");
+        $controller = $this->getEm()->getRepository("CdiGenerator\Entity\Entity")->find($controllerId);
 
         $query = $this->getEm()->createQueryBuilder()
                 ->select('u')
-                ->from('CdiGenerator\Entity\Route', 'u')
-                ->where("u.module = :moduleId")
-                ->setParameter("moduleId", $moduleId);
-        $source = new \CdiDataGrid\Source\DoctrineSource($this->getEm(), "CdiGenerator\Entity\Route", $query);
+                ->from('CdiGenerator\Entity\Action', 'u')
+                ->where("u.controller = :controllerId")
+                ->setParameter("controllerId", $controllerId);
+        $source = new \CdiDataGrid\Source\DoctrineSource($this->getEm(), "CdiGenerator\Entity\Action", $query);
         $this->grid->setSource($source);
 
         ##################################################
-        
         $this->grid->setRecordsPerPage(100);
         $this->grid->setTableClass("table-condensed");
         $this->grid->prepare();
 
-        $this->grid->getFormFilters()->remove("module");
+        $this->grid->getFormFilters()->remove("controller");
 
         if ($this->request->getPost("crudAction") == "edit" || $this->request->getPost("crudAction") == "add" || $this->request->getPost("crudAction") == "editSubmit" || $this->request->getPost("crudAction") == "addSubmit") {
-            $this->grid->getCrudForm()->remove("module");
-            $hidden = new \Zend\Form\Element\Hidden("module");
-            $hidden->setValue($moduleId);
+            $this->grid->getCrudForm()->remove("controller");
+            $hidden = new \Zend\Form\Element\Hidden("controller");
+            $hidden->setValue($controllerId);
             $this->grid->getCrudForm()->add($hidden);
         }
 
@@ -78,8 +77,5 @@ class RouteController extends AbstractActionController {
         $view->setTerminal(true);
         return $view;
     }
-
-
-  
 
 }

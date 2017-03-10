@@ -36,9 +36,31 @@ class GeneratorController extends AbstractActionController {
         $repositoryGenerator->generate();
 
 
-        $view = new \Zend\View\Model\ViewModel(["entityGenerator" => $entityGenerator, 
+        $view = new \Zend\View\Model\ViewModel([
+            "entityGenerator" => $entityGenerator,
             "repositoryGenerator" => $repositoryGenerator,
             "entity" => $entity]);
+        $view->setTerminal(true);
+        return $view;
+    }
+
+    public function controllerAction() {
+        $controllerId = $this->params("controllerId");
+        $controller = $this->getEm()->getRepository("CdiGenerator\Entity\Controller")->find($controllerId);
+
+        $controllerGenerator = new \CdiGenerator\Generator\ControllerGenerator($controller);
+        $controllerGenerator->setOverwrite(true);
+        $controllerGenerator->generate();
+
+
+        $controllerFactoryGenerator = new \CdiGenerator\Generator\ControllerFactoryGenerator($controller);
+        $controllerFactoryGenerator->setOverwrite(true);
+        $controllerFactoryGenerator->generate();
+
+        $view = new \Zend\View\Model\ViewModel([
+            "controllerGenerator" => $controllerGenerator,
+            "controllerFactoryGenerator" => $controllerFactoryGenerator,
+            "controller" => $controller]);
         $view->setTerminal(true);
         return $view;
     }

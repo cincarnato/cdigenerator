@@ -2,32 +2,23 @@
 
 return [
     //Entity
-    "CdiGenerator_Route" => [
+    "CdiGenerator_Controller" => [
         "sourceConfig" => [
             "type" => "doctrine",
             "doctrineOptions" => [
-                "entityName" => "\CdiGenerator\Entity\Route",
+                "entityName" => "\CdiGenerator\Entity\Controller",
                 "entityManager" => "doctrine.entitymanager.orm_cdigenerator"
             ]
         ],
         "columnsConfig" => [
-            "childs" => [
+            "actions" => [
                 "hidden" => true
-            ],
-            "parent" => [
-                "type" => "relational"
             ],
             "module" => [
                 "type" => "relational",
-                "hidden" => true
+                  "hidden" => true
             ],
-            "controller" => [
-                "type" => "relational"
-            ],
-            "action" => [
-                "type" => "relational"
-            ],
-            "type" => [
+             "entity" => [
                 "type" => "relational"
             ],
         ],
